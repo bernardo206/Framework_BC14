@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Keys;
 
+import static org.openqa.selenium.By.cssSelector;
+
 public class HotelPage extends SeleniumWrapper {
 
 
@@ -14,35 +16,33 @@ public class HotelPage extends SeleniumWrapper {
     }
 
 
+
+
+
     // DEFINIR LOCALIZADORES-----------------------------------------------------------------------
 
 
     By locatorBotonHoteles = By.xpath("//span[contains(text(), 'Hoteles')]");
 
-
+    // Donde ir o destino
     By locatorDondeIr = By.cssSelector("input[aria-label='Buscar alojamiento en']");
 
-
+    //Calendario entrada y salida
     By locatorFechaIngreso = By.cssSelector("button[aria-label='Fecha de entrada']");
 
+    By locatorBoton18 = By.xpath("//button[text()='18']");
+
+    By locatorBoton22 = By.xpath("//button[text()='22']");
+
+    //Reducir adultos
+    By botonReducirAdultos = By.className("d-9hyv4y");
+
+    By salirDeBotonReducirAdultos = By.cssSelector("input[aria-label='Buscar alojamiento en']");
 
 
+    //BotonBuscar
+    By botonBuscar = By.cssSelector("div.d-acz6lr");
 
-
-
-    By locatorFirstname = By.name("firstname");
-    By locatorLastname = By.name("lastname");
-    By locatorMail = By.name("reg_email__");
-    By locatorReMail = By.name("reg_email_confirmation__");
-    By locatorPassword = By.name("reg_passwd__");
-    By locatorDia = By.name("birthday_day");
-
-    By locatorAnio = By.id("year");
-    By locatorGeneros = By.xpath("//label[contains(@for,'u_0_')]");
-    By locatorPronombre = By.name("preferred_pronoun");
-    By locatorCustomGenero = By.name("custom_gender");
-    By locatorBotonIngresar = By.xpath("//button[@type='submit']");
-    By locatorCorreoYaAsociado = By.xpath("//h3[contains(text(), 'tienes una cuenta de Facebook')]");
 
 
     // CENTRALIZAR ACCIONES------------------------------------------------------------------------
@@ -56,26 +56,33 @@ public class HotelPage extends SeleniumWrapper {
 
 
 
-      // escribirTexto(esperarXElementoLocalizado(locatorDondeIr),Lugar);
-       // esperarXSegundos(2000);
-       // click(locatorDondeIr);
-
-
-
         WebElement dondeIrElement = esperarXElementoLocalizado(locatorDondeIr);
         escribirTexto(dondeIrElement, Lugar);
         esperarXSegundos(2000);
-
-        // Envía la tecla Enter
-        dondeIrElement.sendKeys(Keys.ENTER);
-
-        esperarXSegundos(4000);
+        dondeIrElement.clear();
+        esperarXSegundos(2000);
 
 
 
 
         click(esperarXElementoLocalizado(locatorFechaIngreso));
         esperarXSegundos(2000);
+        click(locatorBoton18);
+        click(locatorBoton22);
+        esperarXSegundos(2000);
+
+
+        click(botonReducirAdultos);
+        esperarXSegundos(2000);
+        click(salirDeBotonReducirAdultos);
+        escribirTexto(dondeIrElement, Lugar);
+        esperarXSegundos(2000);
+        dondeIrElement.clear();
+        esperarXSegundos(2000);
+
+
+        click(botonBuscar);
+      esperarXSegundos(12000);
 
 
 

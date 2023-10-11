@@ -18,27 +18,40 @@ public class SeleniumWrapper {
     private WebDriver driver;
     private WebDriverWait espera;
 
+
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
         this.driver = driver;
     }
+
+
+
 
     //Wrappers Selenium
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
 
+
     public List<WebElement> findElements (By locator){
         return driver.findElements(locator);
     }
+
+
+
 
     public String getText (By locator){
         return driver.findElement(locator).getText();
     }
 
+
+
     public void write(String inputText, By locator){
         driver.findElement(locator).sendKeys(inputText);
     }
+
+
+
     public void sendKeys(Keys key, By locator){
         driver.findElement(locator).sendKeys(key);
     }
@@ -51,6 +64,8 @@ public class SeleniumWrapper {
             return false;
         }
     }
+
+
     public Boolean isEnabled(By locator) {
         try {
             return driver.findElement(locator).isEnabled();
@@ -58,6 +73,8 @@ public class SeleniumWrapper {
             return false;
         }
     }
+
+
 
     public Boolean isSelected(By locator) {
         try {
@@ -67,9 +84,11 @@ public class SeleniumWrapper {
         }
     }
 
+
     public void navigateTo(String url){
         driver.navigate().to(url);
     }
+
 
     public String getUrlTitle(){
         return driver.getTitle();
@@ -129,6 +148,8 @@ public class SeleniumWrapper {
         driver.get(url);
     }
 
+
+
     //Driver que espera 20 milisegundos hasta que aparece un elemento, consulta cada 0.5 seg la condicion esperada --(ExpectedCondicions)--
     public WebElement esperarXElementoLocalizado(By localizador){
         espera = new WebDriverWait(this.getDriver(),20);
@@ -183,6 +204,11 @@ public class SeleniumWrapper {
 
     }
 
+    public void clickearPorPos(By localizador, int pos){
+        List<WebElement> lista = buscarElementosWeb(localizador);
+        WebElement elemento= (lista.get(pos));
+        click(elemento);
+    }
 
 
 

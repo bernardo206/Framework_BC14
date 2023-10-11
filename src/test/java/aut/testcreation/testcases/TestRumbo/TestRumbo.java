@@ -31,20 +31,23 @@ public class TestRumbo {
             home = new HomePageRumbo(driver);
             home.conexionDriver(browser,rutaDriver,property);
 
-            hotelPage = new HotelPage(home.getDriver());
+            hotelPage = new HotelPage (home.getDriver());
             home.cargarPagina("https://www.rumbo.es/");
+
+
 
         }
 
 
     @Test
-    public void CP001_Reserva_hotel_ok(){
+    public void CP001_Busqueda_Hotel_Ok()  {
 
         home.aceptarCookies();
+        hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
-
-
     }
+
+
 
 
 
