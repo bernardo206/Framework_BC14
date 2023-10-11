@@ -1,12 +1,10 @@
 package framework.engine.selenium;
 
 import lombok.Getter;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,7 +15,7 @@ public class SeleniumWrapper {
 
     private WebDriver driver;
     private WebDriverWait espera;
-
+    private JavascriptExecutor js;
 
     //Constructor Base
     public SeleniumWrapper(WebDriver driver){
@@ -57,6 +55,25 @@ public class SeleniumWrapper {
     }
 
 
+    public String isDisplayed2(By locator) {
+        return (String) ((JavascriptExecutor) driver).executeScript("alert('La fecha seleccionada está deshabilitada.');");
+
+   }
+
+    public void dobleClick(By localizador) {
+        Actions act = new Actions(driver);
+        WebElement ele = driver.findElement(localizador);
+        act.doubleClick(ele).perform();
+    }
+
+    public void scroll(By localizador) {
+        WebElement elemento = driver.findElement(localizador);
+        js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", elemento);
+
+    }
+
+
     public Boolean isDisplayed(By locator) {
         try {
             return driver.findElement(locator).isDisplayed();
@@ -64,6 +81,10 @@ public class SeleniumWrapper {
             return false;
         }
     }
+
+
+
+
 
 
     public Boolean isEnabled(By locator) {

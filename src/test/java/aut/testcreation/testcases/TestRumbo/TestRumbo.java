@@ -17,11 +17,9 @@ public class TestRumbo {
 
         WebDriver driver;
         HomePageRumbo home ;
-
         HotelPage hotelPage;
         String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
         String browser = "Chrome";
-
         String property = "webdriver.chrome.driver";
 
 
@@ -30,11 +28,8 @@ public class TestRumbo {
 
             home = new HomePageRumbo(driver);
             home.conexionDriver(browser,rutaDriver,property);
-
             hotelPage = new HotelPage (home.getDriver());
             home.cargarPagina("https://www.rumbo.es/");
-
-
 
         }
 
@@ -45,9 +40,19 @@ public class TestRumbo {
         home.aceptarCookies();
         hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
+
+
     }
 
+    @Test
+    public void CP002_Busqueda_Hotel_Fecha_no_Ok()  {
 
+        home.aceptarCookies();
+        hotelPage.maximizarBrowser();
+        hotelPage.completarCamposBusquedaHoteles_fecha_deshabilitada("Barcelona");
+
+
+    }
 
 
 

@@ -1,5 +1,6 @@
 package aut.testcreation.pages.Bootcamp14pages.HotelPage;
 
+import com.github.dockerjava.api.model.Driver;
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +45,20 @@ public class HotelPage extends SeleniumWrapper {
     By botonBuscar = By.cssSelector("div.d-acz6lr");
 
 
+    //Boton Siguiente mes
+    By siguienteMes = By.cssSelector("button[aria-label='Next month']");
+
+    //Boton deshabilitado
+    By estaDisabled = By.cssSelector("button.d-7ws88j[tabindex='-1']");
+
+
+
+
+
+
+
+
+
 
     // CENTRALIZAR ACCIONES------------------------------------------------------------------------
 
@@ -54,8 +69,6 @@ public class HotelPage extends SeleniumWrapper {
         click(esperarXElementoLocalizado(locatorBotonHoteles));
         esperarXSegundos(2000);
 
-
-
         WebElement dondeIrElement = esperarXElementoLocalizado(locatorDondeIr);
         escribirTexto(dondeIrElement, Lugar);
         esperarXSegundos(2000);
@@ -63,14 +76,11 @@ public class HotelPage extends SeleniumWrapper {
         esperarXSegundos(2000);
 
 
-
-
         click(esperarXElementoLocalizado(locatorFechaIngreso));
         esperarXSegundos(2000);
         click(locatorBoton18);
         click(locatorBoton22);
         esperarXSegundos(2000);
-
 
         click(botonReducirAdultos);
         esperarXSegundos(2000);
@@ -80,12 +90,55 @@ public class HotelPage extends SeleniumWrapper {
         dondeIrElement.clear();
         esperarXSegundos(2000);
 
-
         click(botonBuscar);
-      esperarXSegundos(12000);
-
-
-
+      esperarXSegundos(4000);
 
     }
+
+    public void completarCamposBusquedaHoteles_fecha_deshabilitada(String Lugar) {
+
+        click(esperarXElementoLocalizado(locatorBotonHoteles));
+        esperarXSegundos(2000);
+
+        WebElement dondeIrElement = esperarXElementoLocalizado(locatorDondeIr);
+        escribirTexto(dondeIrElement, Lugar);
+        esperarXSegundos(2000);
+        dondeIrElement.clear();
+        esperarXSegundos(1000);
+
+        click(esperarXElementoLocalizado(locatorFechaIngreso));
+        esperarXSegundos(2000);
+        click(locatorBoton18);
+
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        click(siguienteMes);
+        esperarXSegundos(1000);
+        isDisplayed2(estaDisabled);
+        esperarXSegundos(3000);
+
+    }
+
+
+
 }
