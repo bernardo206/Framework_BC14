@@ -1,13 +1,11 @@
 package aut.testcreation.pages.Bootcamp14pages.HotelPage;
 
-import com.github.dockerjava.api.model.Driver;
+
 import framework.engine.selenium.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.Keys;
 
-import static org.openqa.selenium.By.cssSelector;
 
 public class HotelPage extends SeleniumWrapper {
 

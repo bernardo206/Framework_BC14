@@ -4,13 +4,15 @@ import aut.testcreation.pages.BernardoPages.HomePage;
 import aut.testcreation.pages.BernardoPages.RegisterPage;
 import aut.testcreation.pages.Bootcamp14pages.HomePageRumbo;
 import aut.testcreation.pages.Bootcamp14pages.HotelPage.HotelPage;
+import framework.engine.selenium.DriverFactory;
+import framework.engine.selenium.SeleniumTestBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 
-public class TestRumbo {
+public class TestRumbo extends SeleniumTestBase {
 
 
         //ATRIBUTOS
@@ -26,6 +28,7 @@ public class TestRumbo {
         @BeforeEach
         public void preTest(){
 
+            driver= DriverFactory.getDriver();
             home = new HomePageRumbo(driver);
             home.conexionDriver(browser,rutaDriver,property);
             hotelPage = new HotelPage (home.getDriver());
