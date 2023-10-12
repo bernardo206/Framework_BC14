@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 public class SeleniumWrapper {
 
-    private WebDriver driver;
+    protected WebDriver driver;
     private WebDriverWait espera;
     private JavascriptExecutor js;
 
@@ -129,7 +129,9 @@ public class SeleniumWrapper {
     public void click(By localizador){
         driver.findElement(localizador).click();
     }
-
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public void click(WebElement element){
         element.click();
@@ -148,8 +150,6 @@ public class SeleniumWrapper {
     public WebElement buscarElementoWeb(By localizador){
         return  driver.findElement(localizador);
     }
-
-
 
     public List<WebElement> buscarElementosWeb(By localizador){
         return driver.findElements(localizador);
@@ -231,6 +231,35 @@ public class SeleniumWrapper {
         click(elemento);
     }
 
+    public void scroll(By localizador) {
+        WebElement elemento = driver.findElement(localizador);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", elemento);
 
+    }
+    public void selecionarPorLocalizador(By localizador){
+        Select elemento = new Select(esperarXElementoLocalizado(localizador));
+
+    }
+    public void  seleccionarComboBoxPorContainsTexto(By localizador, String texto){
+        Select elemento = new Select(esperarXElementoLocalizado((By.xpath("//*[contains(text(), '" + texto + "')]"))));
+    }
+
+    public void clickearPorPos(By localizador, int pos){
+        List<WebElement> lista = buscarElementosWeb(localizador);
+        WebElement elemento= (lista.get(pos));
+        click(elemento);
+    }
+
+    public void writePorPos(String inputText, By locator , int pos){
+        List<WebElement> lista = buscarElementosWeb(locator);
+        WebElement elemento= (lista.get(pos));
+        elemento.sendKeys(inputText);
+    }
+/*
+    public void seleccionarComboPorPos(By localizador , int pos){
+        Select elemento = new Select(esperarXElementoLocalizado((By.xpath("//*[contains(text(), '" + texto + "')]"))));
+    }
+*/
 
 }
