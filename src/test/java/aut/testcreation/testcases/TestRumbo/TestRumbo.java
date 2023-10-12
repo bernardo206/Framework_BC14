@@ -1,47 +1,57 @@
 package aut.testcreation.testcases.TestRumbo;
 
-import aut.testcreation.pages.BernardoPages.HomePage;
-import aut.testcreation.pages.BernardoPages.RegisterPage;
+
 import aut.testcreation.pages.Bootcamp14pages.HomePageRumbo;
 import aut.testcreation.pages.Bootcamp14pages.HotelPage.HotelPage;
+import framework.engine.selenium.DriverFactory;
+import framework.engine.selenium.SeleniumTestBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 
-public class TestRumbo {
+public class TestRumbo extends SeleniumTestBase {
 
 
-        //ATRIBUTOS
+    //ATRIBUTOS
 
-        WebDriver driver;
-        HomePageRumbo home ;
-
-        HotelPage hotelPage;
-        String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
-        String browser = "Chrome";
-
-        String property = "webdriver.chrome.driver";
+    WebDriver driver;
+    HomePageRumbo home ;
+    HotelPage hotelPage;
+    String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
+    String browser = "Chrome";
+    String property = "webdriver.chrome.driver";
 
 
-        @BeforeEach
-        public void preTest(){
+    @BeforeEach
+    public void preTest(){
 
-            home = new HomePageRumbo(driver);
-            home.conexionDriver(browser,rutaDriver,property);
+        driver= DriverFactory.getDriver();
+        home = new HomePageRumbo(driver);
+        home.conexionDriver(browser,rutaDriver,property);
+        hotelPage = new HotelPage (home.getDriver());
+        home.cargarPagina("https://www.rumbo.es/");
 
-            hotelPage = new HotelPage(home.getDriver());
-            home.cargarPagina("https://www.rumbo.es/");
-
-        }
+    }
 
 
     @Test
-    public void CP001_Reserva_hotel_ok(){
+    public void CP001_Busqueda_Hotel_Ok()  {
 
         home.aceptarCookies();
+        hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
+
+
+    }
+
+    @Test
+    public void CP002_Busqueda_Hotel_Fecha_no_Ok()  {
+
+        home.aceptarCookies();
+        hotelPage.maximizarBrowser();
+        hotelPage.completarCamposBusquedaHoteles_fecha_deshabilitada("Barcelona");
 
 
     }
@@ -50,8 +60,8 @@ public class TestRumbo {
 
 
 
-          @AfterEach
-          public void afterTest(){
+    @AfterEach
+    public void afterTest(){
         home.cerrarBrowser();
     }
 
@@ -61,4 +71,4 @@ public class TestRumbo {
 
 
 
-    }
+}

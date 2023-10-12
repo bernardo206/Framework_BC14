@@ -22,6 +22,7 @@ public class HomePageRumbo extends SeleniumWrapper {
 
     By locatorVerMas = By.xpath("(//div[@class='MenuLinkstyled__MenuLinkWrapper-sc-1dkmpyp-2 ixtBwj'])[11]");
     By btnTrenes = By.xpath("//div[@class='MenuLinkstyled__MenuTextWrapper-sc-1dkmpyp-4 KZClY' and text()='Trenes']");
+
     // CENTRALIZAR ACCIONES------------------------------------------------------------------------
 
     public void aceptarCookies(){

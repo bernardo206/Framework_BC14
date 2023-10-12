@@ -29,7 +29,7 @@ public class testTren extends SeleniumWrapper {
     formularioTren formularioT;
 
 
-    String rutaDriver = "C:\\Users\\andrea.zunino\\Desktop\\Desafio_BC14\\src\\test\\resources\\Drivers\\chromedriver.exe";
+    String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
     String browser = "Chrome";
 
     String property = "webdriver.chrome.driver";
@@ -57,7 +57,7 @@ public class testTren extends SeleniumWrapper {
 
 @Test
 public void CP_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada
-        home.locatorBtnAceptarCookies();
+        home.aceptarCookies();
         home.locatorVerMas();
         home.btnTrenes();
         tren.locatorIda();
@@ -67,7 +67,7 @@ public void CP_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la
         tren.locatorPrimerTren();
         tren.aceptarPrimerTren();
         formularioT.formularioDatos("carlos","perez","probando@gmail.com", 234343434);
-        formularioT.formulacioPasajero("Roberto","Garcia","123456789b",14,"noviembre",2000);
+        formularioT.formulacioPasajero("Roberto","Garcia",14,1988,"123456789b");
 
         Assertions.assertTrue(true);
         }
