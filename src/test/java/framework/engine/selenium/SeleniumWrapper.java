@@ -218,6 +218,7 @@ public class SeleniumWrapper {
 
     }
 
+
     public void  seleccionarComboBoxPorTextoVisible(By localizador, String texto){
 
         Select selectDia = new Select(esperarXElementoLocalizado(localizador));
@@ -231,12 +232,7 @@ public class SeleniumWrapper {
         click(elemento);
     }
 
-    public void scroll(By localizador) {
-        WebElement elemento = driver.findElement(localizador);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", elemento);
 
-    }
     public void selecionarPorLocalizador(By localizador){
         Select elemento = new Select(esperarXElementoLocalizado(localizador));
 
@@ -245,16 +241,16 @@ public class SeleniumWrapper {
         Select elemento = new Select(esperarXElementoLocalizado((By.xpath("//*[contains(text(), '" + texto + "')]"))));
     }
 
-    public void clickearPorPos(By localizador, int pos){
-        List<WebElement> lista = buscarElementosWeb(localizador);
-        WebElement elemento= (lista.get(pos));
-        click(elemento);
-    }
+
 
     public void writePorPos(String inputText, By locator , int pos){
         List<WebElement> lista = buscarElementosWeb(locator);
         WebElement elemento= (lista.get(pos));
         elemento.sendKeys(inputText);
+    }
+
+    public void enter(By localizador) {
+        driver.findElement(localizador).submit();
     }
 /*
     public void seleccionarComboPorPos(By localizador , int pos){

@@ -23,7 +23,7 @@ public class HomePageRumbo extends SeleniumWrapper {
     By locatorVerMas = By.xpath("(//div[@class='MenuLinkstyled__MenuLinkWrapper-sc-1dkmpyp-2 ixtBwj'])[11]");
     By btnTrenes = By.xpath("//div[@class='MenuLinkstyled__MenuTextWrapper-sc-1dkmpyp-4 KZClY' and text()='Trenes']");
     // CENTRALIZAR ACCIONES------------------------------------------------------------------------
-
+    By btnTrenHotel = By.xpath("//div[contains(text(),'Tren + Hotel')]");
     public void aceptarCookies(){
      click(esperarXElementoLocalizado(localizadorBotonCookies));
     }
@@ -73,5 +73,9 @@ public class HomePageRumbo extends SeleniumWrapper {
 
     public void btnTrenes(){
         click(esperarXElementoLocalizado(btnTrenes));
+    }
+
+    public void btnTrenHotel(){
+        click(esperarXElementoLocalizado(btnTrenHotel));
     }
 }
