@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 public class SeguroPageRumbo extends SeleniumWrapper {
 
-
     public SeguroPageRumbo(WebDriver driver) {
         super(driver);
     }

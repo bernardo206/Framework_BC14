@@ -10,43 +10,43 @@ public class ContactoPageRumbo extends SeleniumWrapper {
         super(driver);
     }
 
-    public void completarDatosContacto() throws InterruptedException {
+    public void completarDatosContacto(String nombre, String apellido, String email, String telefono, String calle, int numero , String cp, String ciudad, String dia, String mes, String anio) throws InterruptedException {
         Thread.sleep(3000);
-        By nombre = By.xpath("//input[@name='name']");
-        write("Juan", nombre);
-        By apellido = By.xpath("//input[@name='surname']");
-        write("Perez", apellido);
-        By email = By.xpath("//input[@name='email']");
-        write("elasdelaspruebasautomatizadas@yahoo.com.es", email);
-        By telefono = By.xpath("//input[@name='phone']");
-        write("2223333444", telefono);
+        By name = By.xpath("//input[@name='name']");
+        write(nombre, name);
+        By surname = By.xpath("//input[@name='surname']");
+        write(apellido, surname);
+        By mail = By.xpath("//input[@name='email']");
+        write(email, mail);
+        By phone = By.xpath("//input[@name='phone']");
+        write(telefono, phone);
         By direccion = By.xpath("//input[@name='address']");
         scroll(direccion);
-        write("mi calle", direccion);
+        write(calle, direccion);
         By numeroCasa = By.xpath("//input[@name='houseNumber']");
         write("123", numeroCasa);
         By codigoPostal = By.xpath("//input[@name='postCode']");
         write("7000", codigoPostal);
-        By ciudad = By.xpath("//input[@name='city']");
-        write("Barcelona", ciudad);
+        By city = By.xpath("//input[@name='city']");
+        write(ciudad, city);
         By sexo =By.xpath("//*[@id='radio-groups.1.travellers.1.title-MALE-label']");
         click(sexo);
         Thread.sleep(2000);
-        By dia = By.xpath("//input[@name='groups.1.travellers.1.dateOfBirth']");
-        scroll(dia);
-        write("10" , dia);
-        By mes = By.xpath("//span[@class='FormFieldstyles__AdornmentWrapper-sc-1pt5zgp-5 TKzFh']");
-        clickearPorPos(mes, 11);
+        By date = By.xpath("//input[@name='groups.1.travellers.1.dateOfBirth']");
+        scroll(date);
+        write(dia , date);
+        By month = By.xpath("//button[@data-testid='groups.1.travellers.1.dateOfBirth_month']//span[1]");
+        click(month);
         Set<String> handles = driver.getWindowHandles();
         for (String handle : handles) {
             driver.switchTo().window(handle);
-            By enero = By.xpath("//span[contains(text(),'enero')]");
-            click(enero);
+            By elejido = By.xpath("//span[contains(text(),"+mes+")]");
+            click(elejido);
         }
         String mainWindowHandle = driver.getWindowHandle();
         driver.switchTo().window(mainWindowHandle);
-        By anio = By.xpath("//span[.//input][.//span[contains(text(),'Año')]]/input");
-        write("2000", anio);
+        By year = By.xpath("//span[.//input][.//span[contains(text(),'Año')]]/input");
+        write(anio, year);
     }
     public void selecionaEquipaje(){
         By equipaje =By.xpath("//input[@data-testid='radio-input']");

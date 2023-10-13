@@ -32,13 +32,10 @@ public class VuelosPageRumbo extends SeleniumWrapper {
         driver.switchTo().window(mainWindowHandle);
     }
 
-    public void elegirTarifa() throws InterruptedException {
+    public void elegirTarifa(String tarifa) throws InterruptedException {
         Thread.sleep(15000);
-
-        By localizadorSeleccionarTarifa = By.xpath("//button[contains(text(),'Elegir Classic')]");
+        By localizadorSeleccionarTarifa = By.xpath("//button[contains(text(),"+tarifa+")]");
         scroll(localizadorSeleccionarTarifa);
         click(localizadorSeleccionarTarifa);
     }
-
-
 }
