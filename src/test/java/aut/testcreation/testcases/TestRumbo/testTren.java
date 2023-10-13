@@ -29,7 +29,7 @@ public class testTren extends SeleniumWrapper {
     formularioTren formularioT;
 
 
-    String rutaDriver = "C:\\Users\\andrea.zunino\\Desktop\\Desafio_BC14\\src\\test\\resources\\Drivers\\chromedriver.exe";
+    String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
     String browser = "Chrome";
 
     String property = "webdriver.chrome.driver";
@@ -54,9 +54,14 @@ public class testTren extends SeleniumWrapper {
 
     }
 
+<<<<<<< HEAD
     @Test
     public void CP_ReservaTrenIda() {  //no elijo cant pasajero, lo hace con 2 que es la opcion recomendada. Lo mismo con la fecha.
         //en la parte de datos llego hasta completar los datos de la persona y que se valide, no completo los datos del pasajero ni clickeo siguiente
+=======
+@Test
+public void CP_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada
+>>>>>>> 8dacfcc911f30117bc43dd8887c36ddc4ee23663
         home.aceptarCookies();
         home.locatorVerMas();
         home.btnTrenes();
@@ -66,8 +71,13 @@ public class testTren extends SeleniumWrapper {
         tren.btnBuscar();
         tren.locatorPrimerTren();
         tren.aceptarPrimerTren();
+<<<<<<< HEAD
         formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
         // formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
+=======
+        formularioT.formularioDatos("carlos","perez","probando@gmail.com", 234343434);
+        formularioT.formulacioPasajero("Roberto","Garcia",14,1988,"123456789b");
+>>>>>>> 8dacfcc911f30117bc43dd8887c36ddc4ee23663
 
         Assertions.assertTrue(true);
     }
