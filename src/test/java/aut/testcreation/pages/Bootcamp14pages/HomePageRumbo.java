@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Set;
+
 public class HomePageRumbo extends SeleniumWrapper {
 
 
@@ -89,7 +91,33 @@ public class HomePageRumbo extends SeleniumWrapper {
     }
 
 
+    public void seleccionarPais() throws InterruptedException {
+        By seleccion = By.xpath("//div//*[@id=\"globe_svg__filled\"]");
+        click(seleccion);
+        Thread.sleep(3000);
+        Set<String> handles = driver.getWindowHandles();
+        for (String handle : handles) {
+            driver.switchTo().window(handle);
+            By ingles = By.xpath("//p[text()='Worldwide (English)']");
+            click(ingles);
+        }
+        String mainWindowHandle = driver.getWindowHandle();
+        driver.switchTo().window(mainWindowHandle);
+    }
 
 
+    public void aceptarCookiesIngles(){
+        By localizadorBotonCookies = By.xpath("//button[contains(text(), 'Accept all')]");
+        click(esperarXElementoLocalizado(localizadorBotonCookies));
+    }
+
+
+    public boolean selectOneWay(){
+        By localizadorSoloIda = By.xpath("//div[contains(text(),'One-way')]");
+        if(localizadorSoloIda!=null){
+            return true;
+        }
+        return false;
+    }
 
 }

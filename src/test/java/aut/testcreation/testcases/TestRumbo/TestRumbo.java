@@ -1,10 +1,6 @@
 package aut.testcreation.testcases.TestRumbo;
-
-import aut.testcreation.pages.BernardoPages.HomePage;
-import aut.testcreation.pages.BernardoPages.RegisterPage;
 import aut.testcreation.pages.Bootcamp14pages.*;
 import aut.testcreation.pages.Bootcamp14pages.HotelPage.HotelPage;
-import io.restassured.internal.common.assertion.Assertion;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +20,7 @@ public class TestRumbo {
     SeguroPageRumbo seguro;
     ConfirmacionPageRumbo confirmacion;
     HotelPage hotelPage;
-    String rutaDriver = "C:\\Users\\belen.gonzalez\\Desktop\\BC14\\app\\src\\test\\resources\\drivers\\chromedriver.exe";
+    String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
     String browser = "Chrome";
     String property = "webdriver.chrome.driver";
 
@@ -41,14 +37,18 @@ public class TestRumbo {
         hotelPage = new HotelPage(home.getDriver());
         home.cargarPagina("https://www.rumbo.es/");
     }
+    @AfterEach
+    public void afterTest(){
+        home.cerrarBrowser();
+    }
 
     @Test
     public void CP0012_Reserva_vuelo_solo_ida_OK() throws InterruptedException {
         home.aceptarCookies();
-        home.ingresarOrigen("Madrid (MAD)");
-        home.ingresarDestino("Barcelona (BCN)");
+        home.ingresarOrigen();
+        home.ingresarDestino();
         home.seleccionarVueloSoloIda();
-        home.ingresarFechaSalida("10", "24");
+        home.ingresarFechaSalida();
         home.buscar();
         vuelosPage.seleccionarVuelo();
         vuelosPage.confirmarVuelo();
@@ -67,10 +67,10 @@ public class TestRumbo {
     @Test
     public void CP0008_Reserva_vuelo_Sin_Seleccionar_Equipaje_NO_OK() throws InterruptedException {
         home.aceptarCookies();
-        home.ingresarOrigen("Madrid (MAD)");
-        home.ingresarDestino("Barcelona (BCN)");
+        home.ingresarOrigen();
+        home.ingresarDestino();
         home.seleccionarVueloSoloIda();
-        home.ingresarFechaSalida("10", "24");
+        home.ingresarFechaSalida();
         home.buscar();
         vuelosPage.seleccionarVuelo();
         vuelosPage.confirmarVuelo();
@@ -83,7 +83,7 @@ public class TestRumbo {
         Assertions.assertEquals(resultadoEsperado, resultadoObtenido);
     }
 
-    @Test
+   @Test
     public void CP009_Reserva_Otro_Idioma_OK() throws InterruptedException {
         home.aceptarCookies();
         home.seleccionarPais();
@@ -102,12 +102,21 @@ public class TestRumbo {
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
 
     }
+
+    @Test
+    public void CP002_Busqueda_Hotel_Fecha_no_Ok()  {
+
+        home.aceptarCookies();
+        hotelPage.maximizarBrowser();
+        hotelPage.completarCamposBusquedaHoteles_fecha_deshabilitada("Barcelona");
+
+
+    }
+
+
 }
 
 
 
-/*  @AfterEach
-    public void afterTest(){
-        home.cerrarBrowser();
-    }*/
+
 
