@@ -218,6 +218,7 @@ public class SeleniumWrapper {
 
     }
 
+
     public void  seleccionarComboBoxPorTextoVisible(By localizador, String texto){
 
         Select selectDia = new Select(esperarXElementoLocalizado(localizador));
@@ -246,6 +247,10 @@ public class SeleniumWrapper {
         List<WebElement> lista = buscarElementosWeb(locator);
         WebElement elemento= (lista.get(pos));
         elemento.sendKeys(inputText);
+    }
+
+    public void enter(By localizador) {
+        driver.findElement(localizador).submit();
     }
 /*
     public void seleccionarComboPorPos(By localizador , int pos){
