@@ -253,4 +253,9 @@ public class SeleniumWrapper {
     }
 */
 
+
+    public void enter(By localizador) {
+        driver.findElement(localizador).submit();
+    }
+
 }

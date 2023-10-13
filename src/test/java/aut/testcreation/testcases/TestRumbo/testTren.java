@@ -16,18 +16,17 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 
 
-public class testTren extends SeleniumWrapper {
+public class testTren {
 
 
     //ATRIBUTOS
 
     WebDriver driver;
-    HomePageRumbo home ;
+    HomePageRumbo home;
 
     HotelPage hotelPage;
     TrenPage tren;
     formularioTren formularioT;
-
 
     String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
     String browser = "Chrome";
@@ -36,17 +35,13 @@ public class testTren extends SeleniumWrapper {
 
 
 
-    public testTren(WebDriver driver) {
-        super(driver);
-    }
 
 
     @BeforeEach
-    public void preTest(){
+    public void preTest() {
 
         home = new HomePageRumbo(driver);
-        home.conexionDriver(browser,rutaDriver,property);
-
+        home.conexionDriver(browser, rutaDriver, property);
         hotelPage = new HotelPage(home.getDriver());
         tren = new TrenPage(home.getDriver());
         formularioT = new formularioTren(tren.getDriver());
@@ -54,24 +49,71 @@ public class testTren extends SeleniumWrapper {
 
 
     }
-
-@Test
-public void CP_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada
+    @Test
+    public void CP_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.locatorVerMas();
         home.btnTrenes();
         tren.locatorIda();
-        tren.locatorOrigen();
+        tren.locatorOrigen("Madrid");
         tren.locatorDestino();
         tren.btnBuscar();
         tren.locatorPrimerTren();
         tren.aceptarPrimerTren();
+
+        formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
+        // formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
+
         formularioT.formularioDatos("carlos","perez","probando@gmail.com", 234343434);
         formularioT.formulacioPasajero("Roberto","Garcia",14,1988,"123456789b");
 
+
         Assertions.assertTrue(true);
-        }
+    }
 
+    @Test
+    public void CP_ReservaTren_DestinoNoDisponible() {
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        tren.locatorIda();
+        tren.errorOrigen("Mar del Plata");
 
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP_ReservaTren_idaVuelta() {  //elijo predeterminado fechas y pasajeros,llego hasta completar datos pasajero y click en seguro
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        tren.locatorIdaVuelta();
+        tren.locatorOrigen("Madrid");
+        tren.locatorDestino();
+        tren.btnBuscar();
+        tren.PrimerTrenIdayVuelta();
+        tren.aceptarPrimerTren();
+        formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
+        //formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
+        formularioT.seguro();
+
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP_ReservaTrenHotel() {  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada. Lo mismo con la fecha.
+        //en la parte de datos llego hasta completar los datos de la persona y que se valide, no completo los datos del pasajero ni clickeo siguiente
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenHotel();
+        tren.locatorOrigen("Madrid");
+        tren.locatorDestino();
+       tren.btnBuscar();
+       Assertions.assertTrue(true);
+    }
 
 }

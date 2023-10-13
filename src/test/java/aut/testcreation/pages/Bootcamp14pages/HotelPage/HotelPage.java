@@ -89,7 +89,7 @@ public class HotelPage extends SeleniumWrapper {
         esperarXSegundos(2000);
 
         click(botonBuscar);
-      esperarXSegundos(4000);
+      esperarXSegundos(8000);
 
     }
 

@@ -30,9 +30,9 @@ public class formularioTren extends SeleniumWrapper {
     By btnSiguiente = By.xpath("//button[normalize-space()='Siguiente']");
     By locatorTipoDocumento = By.xpath("//button[.//span[text()='Tipo de documento']]");
     By locatorSeleccionDNI = By.xpath("//li[.//span[text()='DNI']]");
-    By locatorDNIOpcion = By.xpath("//button[@data-testid='groups.1.travellers.1.documentType' and @aria-haspopup='listbox' and contains(@class, 'FormFieldstyles__InnerWrapper-sc-1pt5zgp-3') and contains(@class, 'Selectstyles__InnerWrapper-sc-d5yk3i-2') and contains(@class, 'fUwskt') and contains(@class, 'dNHwnH')]");
+    By locatorDNIOpcion = By.xpath("//button[@data-testid='groups.1.travellers.1.documentType' and @aria-haspopup='listbox' and contains(@class, 'FormFieldstyles_InnerWrapper-sc-1pt5zgp-3') and contains(@class, 'Selectstyles_InnerWrapper-sc-d5yk3i-2') and contains(@class, 'fUwskt') and contains(@class, 'dNHwnH')]");
     By DNIopcion = By.xpath("//span[contains(@class, 'MenuItemstyles__Label-sc-fguzn7-1') and text()='DNI']");
-
+    By locatorSeguro =By.xpath ("//span[@class='check']");
 
     public void formularioDatos(String nombre, String apellido, String mail, Integer telefono) {
         escribirTexto(esperarXElementoLocalizado(locatorNombre), nombre);
@@ -44,6 +44,9 @@ public class formularioTren extends SeleniumWrapper {
         // click(esperarPorElementoLocalizado(locatorIngresar));
     }
 
+    public void seguro(){
+        click(esperarXElementoLocalizado(locatorSeguro));
+    }
     public void formulacioPasajero(String nombrePasajero, String apellidoPasajero, Integer diaCumpleanios, Integer anioCumpleanios,  String dni){
         click(esperarXElementoLocalizado(locatorSr));
         escribirTexto(esperarXElementoLocalizado(locatorNombrePasajero), nombrePasajero);
