@@ -98,7 +98,6 @@ public class TestRumbo {
         formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
         //formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
         formularioT.seguro();
-
         Assertions.assertTrue(true);
     }
 
@@ -118,6 +117,7 @@ public class TestRumbo {
 
     @Test
     public void CP004_Reserva_TrenHotel_Fechas_no_disponibles_NO_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.locatorVerMas();
         home.btnTrenHotel();
@@ -140,14 +140,9 @@ public class TestRumbo {
         tren.btnBuscar();
         tren.locatorPrimerTren();
         tren.aceptarPrimerTren();
-
         formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
         // formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
-
         formularioT.formularioDatos("carlos","perez","probando@gmail.com", 234343434);
-        formularioT.formulacioPasajero("Roberto","Garcia",14,1988,"123456789b");
-
-
         Assertions.assertTrue(true);
     }
 
@@ -168,6 +163,7 @@ public class TestRumbo {
 
     @Test
     public void CP007_Vuelo_Fechas_no_disponibles_NO_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.ingresarOrigen();
         home.ingresarDestino();
@@ -180,6 +176,7 @@ public class TestRumbo {
 
     @Test
     public void CP008_Reserva_vuelo_Sin_Seleccionar_Equipaje_NO_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.ingresarOrigen();
         home.ingresarDestino();
@@ -199,6 +196,7 @@ public class TestRumbo {
 
     @Test
     public void CP009_Reserva_Otro_Idioma_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.seleccionarPais();
         home.aceptarCookiesIngles();
@@ -211,6 +209,7 @@ public class TestRumbo {
 
     @Test
     public void CP0010_TarjetaDeRegalo_Compra_OK(){
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.locatorVerMas();
         tarjeta.BtnTarjetaRegalo();
@@ -229,6 +228,7 @@ public class TestRumbo {
 
     @Test
     public void CP0011_Busqueda_Vuelo_Filtro_Mas_Barato_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.ingresarOrigen();
         home.ingresarDestino();
@@ -241,6 +241,7 @@ public class TestRumbo {
 
     @Test
     public void CP0012_Reserva_vuelo_solo_ida_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         home.ingresarOrigen();
         home.ingresarDestino();
@@ -263,8 +264,8 @@ public class TestRumbo {
 
     @Test
     public void CP0013_BusquedaHotelSinIndicarDestino_NO_OK () throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
-        hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles(" ");
         Assertions.assertTrue(true);
     }
@@ -272,6 +273,7 @@ public class TestRumbo {
 
     @Test
     public void CP0014_Reserva_paquete_HotelMasvuelo_OK() throws InterruptedException {
+        home.maximizarBrowser();
         home.aceptarCookies();
         vueloMasHotel.VueloMasHotel();
         vueloMasHotel.OrigenVuelo();
@@ -303,17 +305,16 @@ public class TestRumbo {
 
     @Test
     public void CP0017_Busqueda_Hotel_Fecha_no_Ok()  {
-
+        home.maximizarBrowser();
         home.aceptarCookies();
-        hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles_fecha_deshabilitada("Barcelona");
 
     }
 
     @Test
     public void CP0018_Busqueda_hotel_OK() {
+        home.maximizarBrowser();
         home.aceptarCookies();
-        hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
 
     }

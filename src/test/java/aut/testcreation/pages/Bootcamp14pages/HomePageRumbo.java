@@ -78,7 +78,7 @@ public class HomePageRumbo extends SeleniumWrapper {
         By localizadorFechaSalida = By.xpath("//button[@aria-label='Fecha de ida']//span");
         click(localizadorFechaSalida);
         Thread.sleep(3000);
-        By diaSalida = By.xpath("//div//div[.//span[@id='10']]//button[contains(text(), '14')]");
+        By diaSalida = By.xpath("//div//div[.//span[@id='10']]//button[contains(text(), '24')]");
         click(diaSalida);
     }
 
