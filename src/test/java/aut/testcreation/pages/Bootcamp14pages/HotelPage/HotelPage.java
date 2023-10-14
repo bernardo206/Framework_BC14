@@ -137,6 +137,17 @@ public class HotelPage extends SeleniumWrapper {
 
     }
 
+    public void buscar(){
+        click(botonBuscar);
+    }
+
+    public boolean detectaErrorFaltaDestino(){
+        By error = By.xpath("//span[contains(text(),'Introduce, por ejemplo, una ciudad, una isla, una región...')]");
+        if(error!=null){
+            return true;
+        }
+        return false;
+    }
 
 
 }

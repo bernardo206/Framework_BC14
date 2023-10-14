@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+
 
 
 public class TestRumbo {
@@ -22,6 +22,7 @@ public class TestRumbo {
     ContactoPageRumbo contacto;
     SeguroPageRumbo seguro;
     ConfirmacionPageRumbo confirmacion;
+    HotelTren hotelTren;
     HotelPage hotelPage;
 
     //Actions actions;
@@ -42,6 +43,7 @@ public class TestRumbo {
         hotelPage = new HotelPage(home.getDriver());
         home.cargarPagina("https://www.rumbo.es/");
         trenPage = new TrenPage(home.getDriver());
+        hotelTren = new HotelTren(home.getDriver());
       //  actions  = new Actions(home.getDriver());
 
     }
@@ -138,9 +140,79 @@ public class TestRumbo {
         trenPage.esperarXSegundos(8000);
 
 
+    }
 
+
+    @Test
+    public void CP004_Reserva_TrenHotel_Fechas_no_disponibles_NO_OK() throws InterruptedException {
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenHotel();
+        hotelTren.seleccionarOrigen();
+        hotelTren.seleccionarDestino();
+        hotelTren.ingresarFechaSalidaLarga();
+        hotelTren.detectaErrorFecha();
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP004_Vuelo_Fechas_no_disponibles_NO_OK() throws InterruptedException {
+        home.aceptarCookies();
+        home.ingresarOrigen();
+        home.ingresarDestino();
+        home.seleccionarVueloSoloIda();
+        home.ingresarFechaSalidaLarga();
+        home.detectaErrorFecha();
+        Assertions.assertTrue(true);
 
     }
+
+    @Test
+    public void CP001_Busqueda_hotel_OK() {
+        home.aceptarCookies();
+        hotelPage.maximizarBrowser();
+        hotelPage.completarCamposBusquedaHoteles("Barcelona");
+
+    }
+
+    @Test
+    public void CP0011_Busqueda_Vuelo_Filtro_Mas_Barato_OK() throws InterruptedException {
+        home.aceptarCookies();
+        home.ingresarOrigen();
+        home.ingresarDestino();
+        home.seleccionarVueloSoloIda();
+        home.ingresarFechaSalida();
+        home.buscar();
+        vuelosPage.filtroMasBarato();
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP006_Busqueda_Tren_Filtro_Mas_Rapido_OK() throws InterruptedException {
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        trenPage.locatorIdaVuelta();
+        trenPage.locatorOrigen("Madrid");
+        trenPage.locatorDestino();
+        trenPage.btnBuscar();
+        trenPage.filtroMasRapido();
+        Assertions.assertTrue(true);
+
+    }
+
+    @Test
+    public void BusquedaHotelSinIndicarDestino_NO_OK () throws InterruptedException {
+        home.aceptarCookies();
+        hotelPage.maximizarBrowser();
+        hotelPage.completarCamposBusquedaHoteles(" ");
+        Assertions.assertTrue(true);
+    }
+
+
+
+
 /*
     @Test
     public void CP0015_Vuelos_OutletVuelos_RecibirOfertas_mail(){

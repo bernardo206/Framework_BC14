@@ -89,4 +89,13 @@ public class TrenPage extends SeleniumWrapper {
     public void entrarOfertasTrenesRenfe(){
         click(esperarXElementoLocalizado(botonOfertasTrenes));
     }
+
+    public void filtroMasRapido() throws InterruptedException {
+        Thread.sleep(10000);
+        By filtro = By.xpath("//li//h5[contains(text(),'Más rápido')]");
+        click(filtro);
+    }
+
+
+
 }

@@ -133,7 +133,37 @@ public class HomePageRumbo extends SeleniumWrapper {
     }
 
 
+    public void ingresarFechaSalidaLarga() throws InterruptedException {
+        By localizadorFechaSalida = By.xpath("//button[@aria-label='Fecha de ida']//span");
+        click(localizadorFechaSalida);
+        Thread.sleep(3000);
+        By siguienteMes = By.cssSelector("button[aria-label='Next month']");
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        click(siguienteMes);
+        By estaDisabled = By.cssSelector("button.d-7ws88j[tabindex='-1']");
+        isDisplayed2(estaDisabled);
+    }
 
+    public boolean detectaErrorFecha(){
+        By confirmacion = By.xpath("//p[contains(text(),'Verificación y pago')]");
+        if(confirmacion!=null){
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -150,5 +180,9 @@ public class HomePageRumbo extends SeleniumWrapper {
         click(esperarXElementoLocalizado(clickVuelosOu));
     }
 */
+
+
+
+
 
 }

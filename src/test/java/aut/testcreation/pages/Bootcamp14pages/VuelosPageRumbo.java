@@ -38,4 +38,11 @@ public class VuelosPageRumbo extends SeleniumWrapper {
         scroll(localizadorSeleccionarTarifa);
         click(localizadorSeleccionarTarifa);
     }
+
+
+    public void filtroMasBarato() throws InterruptedException {
+        Thread.sleep(10000);
+        By filtro = By.xpath("//li//h5[contains(text(),'Más barato')]");
+        click(filtro);
+    }
 }
