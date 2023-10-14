@@ -1,11 +1,13 @@
 package aut.testcreation.testcases.TestRumbo;
 import aut.testcreation.pages.Bootcamp14pages.*;
 import aut.testcreation.pages.Bootcamp14pages.HotelPage.HotelPage;
+import aut.testcreation.pages.Bootcamp14pages.TrenPage.TrenPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class TestRumbo {
@@ -16,10 +18,13 @@ public class TestRumbo {
     WebDriver driver;
     HomePageRumbo home;
     VuelosPageRumbo vuelosPage;
+    TrenPage trenPage;
     ContactoPageRumbo contacto;
     SeguroPageRumbo seguro;
     ConfirmacionPageRumbo confirmacion;
     HotelPage hotelPage;
+
+    //Actions actions;
     String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
     String browser = "Chrome";
     String property = "webdriver.chrome.driver";
@@ -36,6 +41,9 @@ public class TestRumbo {
         confirmacion = new ConfirmacionPageRumbo(seguro.getDriver());
         hotelPage = new HotelPage(home.getDriver());
         home.cargarPagina("https://www.rumbo.es/");
+        trenPage = new TrenPage(home.getDriver());
+      //  actions  = new Actions(home.getDriver());
+
     }
     @AfterEach
     public void afterTest(){
@@ -96,7 +104,7 @@ public class TestRumbo {
     }
 
     @Test
-    public void CP001_Busqueda_hotel_OK() {
+    public void CP0018_Busqueda_hotel_OK() {
         home.aceptarCookies();
         hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles("Barcelona");
@@ -104,7 +112,7 @@ public class TestRumbo {
     }
 
     @Test
-    public void CP002_Busqueda_Hotel_Fecha_no_Ok()  {
+    public void CP0017_Busqueda_Hotel_Fecha_no_Ok()  {
 
         home.aceptarCookies();
         hotelPage.maximizarBrowser();
@@ -113,8 +121,48 @@ public class TestRumbo {
 
     }
 
+    @Test
+    public void CP0015_Error_Ofertas_Trenes_Renfe(){
 
-}
+        home.maximizarBrowser();
+        home.esperarXSegundos(2000);
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.esperarXSegundos(2000);
+        home.btnTrenes();
+        home.esperarXSegundos(2000);
+        trenPage.entrarOfertasTrenesRenfe();
+        trenPage.esperarXSegundos(6000);
+        trenPage.identificarPestaniasOfertasRenfeTrenes();
+        trenPage.esperarXSegundos(2000);
+        trenPage.esperarXSegundos(8000);
+
+
+
+
+    }
+/*
+    @Test
+    public void CP0015_Vuelos_OutletVuelos_RecibirOfertas_mail(){
+
+        home.maximizarBrowser();
+        home.esperarXSegundos(2000);
+        home.aceptarCookies();
+        home.desplegableVuelos();
+        home.esperarXSegundos(5000);
+        home.ClickVuelosOutlt();
+        home.esperarXSegundos(8000);
+
+
+
+*/
+
+
+    }
+
+
+
+
 
 
 

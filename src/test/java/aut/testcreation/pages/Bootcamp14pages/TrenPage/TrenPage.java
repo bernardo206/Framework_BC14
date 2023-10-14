@@ -32,6 +32,8 @@ public class TrenPage extends SeleniumWrapper {
     By botonReducirAdultos = By.className("d-9hyv4y");
     By salirDeBotonReducirAdultos = By.cssSelector("input[aria-label='Buscar alojamiento en']");
 
+    By botonOfertasTrenes = By.xpath("//img[@alt='Madrid - Barcelona']");
+
     public TrenPage(WebDriver driver) {
         super(driver);
     }
@@ -82,5 +84,9 @@ public class TrenPage extends SeleniumWrapper {
         opcionDestino.click();
         esperarXSegundos(2000);
 
+    }
+
+    public void entrarOfertasTrenesRenfe(){
+        click(esperarXElementoLocalizado(botonOfertasTrenes));
     }
 }

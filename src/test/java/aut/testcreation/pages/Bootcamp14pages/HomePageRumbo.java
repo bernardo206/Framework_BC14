@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Set;
@@ -28,6 +29,17 @@ public class HomePageRumbo extends SeleniumWrapper {
     By btnTrenes = By.xpath("//div[@class='MenuLinkstyled__MenuTextWrapper-sc-1dkmpyp-4 KZClY' and text()='Trenes']");
 
     By btnTrenHotel = By.xpath("//div[contains(text(),'Tren + Hotel')]");
+
+
+
+
+
+
+
+
+   // WebElement despVuelos = driver.findElement( By.xpath("//a[@title='Vuelos']"));
+
+  //  By clickVuelosOu = By.xpath("//div[contains(@class, 'MenuLinkstyled__MenuTextWrapper-sc-1dkmpyp-4 KZClY') and text()='Outlet Vuelos']");
 
 
 
@@ -119,5 +131,24 @@ public class HomePageRumbo extends SeleniumWrapper {
         }
         return false;
     }
+
+
+
+
+
+
+
+
+/*
+    public void desplegableVuelos(){
+
+        actions.moveToElement(despVuelos).build().perform();
+
+    }
+
+    public void ClickVuelosOutlt(){
+        click(esperarXElementoLocalizado(clickVuelosOu));
+    }
+*/
 
 }
