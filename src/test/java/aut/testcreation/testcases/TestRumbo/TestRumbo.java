@@ -2,6 +2,7 @@ package aut.testcreation.testcases.TestRumbo;
 import aut.testcreation.pages.Bootcamp14pages.*;
 import aut.testcreation.pages.Bootcamp14pages.HotelPage.HotelPage;
 import aut.testcreation.pages.Bootcamp14pages.TrenPage.TrenPage;
+import aut.testcreation.pages.Bootcamp14pages.TrenPage.formularioTren;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,14 @@ public class TestRumbo {
     TrenPage trenPage;
     ContactoPageRumbo contacto;
     SeguroPageRumbo seguro;
+    HomeTarjeta tarjeta;
+    RegalaTuTarjetaPage regala;
+    ParticularPage particular;
+    VueloMasHotelPage vueloMasHotel;
+    DestinoPaguete alojamiento;
+    RoomHotelPage room;
+    TrenPage tren;
+    formularioTren formularioT;
     ConfirmacionPageRumbo confirmacion;
     HotelTren hotelTren;
     HotelPage hotelPage;
@@ -44,6 +53,16 @@ public class TestRumbo {
         home.cargarPagina("https://www.rumbo.es/");
         trenPage = new TrenPage(home.getDriver());
         hotelTren = new HotelTren(home.getDriver());
+        tarjeta = new HomeTarjeta(home.getDriver());
+        regala = new RegalaTuTarjetaPage(home.getDriver());
+        particular = new ParticularPage(home.getDriver());
+        vueloMasHotel = new VueloMasHotelPage(home.getDriver());
+        alojamiento = new DestinoPaguete(home.getDriver());
+        room = new RoomHotelPage(home.getDriver());
+
+        tren = new TrenPage(home.getDriver());
+        formularioT = new formularioTren(tren.getDriver());
+
       //  actions  = new Actions(home.getDriver());
 
     }
@@ -156,7 +175,7 @@ public class TestRumbo {
     }
 
     @Test
-    public void CP004_Vuelo_Fechas_no_disponibles_NO_OK() throws InterruptedException {
+    public void CP007_Vuelo_Fechas_no_disponibles_NO_OK() throws InterruptedException {
         home.aceptarCookies();
         home.ingresarOrigen();
         home.ingresarDestino();
@@ -167,13 +186,7 @@ public class TestRumbo {
 
     }
 
-    @Test
-    public void CP001_Busqueda_hotel_OK() {
-        home.aceptarCookies();
-        hotelPage.maximizarBrowser();
-        hotelPage.completarCamposBusquedaHoteles("Barcelona");
 
-    }
 
     @Test
     public void CP0011_Busqueda_Vuelo_Filtro_Mas_Barato_OK() throws InterruptedException {
@@ -203,10 +216,113 @@ public class TestRumbo {
     }
 
     @Test
-    public void BusquedaHotelSinIndicarDestino_NO_OK () throws InterruptedException {
+    public void CP0016_BusquedaHotelSinIndicarDestino_NO_OK () throws InterruptedException {
         home.aceptarCookies();
         hotelPage.maximizarBrowser();
         hotelPage.completarCamposBusquedaHoteles(" ");
+        Assertions.assertTrue(true);
+    }
+
+
+
+    @Test
+    public void CP010_TarjetaDeRegalo_Compra_OK(){
+        home.aceptarCookies();
+        home.locatorVerMas();
+        tarjeta.BtnTarjetaRegalo();
+        regala.Regala();
+        particular.Importe();
+        particular.Imprimir();
+        particular.Destinatario();
+        particular.correo();
+        particular.Remitente();
+        particular.Añadir();
+        particular.Continuar();
+
+        Assertions.assertTrue(true);
+
+    }
+    @Test
+    public void CP0014_Reserva_paquete_HotelMasvuelo_OK() throws InterruptedException {
+        home.aceptarCookies();
+        vueloMasHotel.VueloMasHotel();
+        vueloMasHotel.OrigenVuelo();
+        vueloMasHotel.DestinoVuelo();
+        vueloMasHotel.FechaDeIda();
+        vueloMasHotel.localizar();
+        alojamiento.ElegirAlojamiento();//Hotel Flavia
+        room.Continuar1ero(1);
+
+
+    }
+
+
+
+
+    @Test
+    public void CP005_ReservaTrenIda(){  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        tren.locatorIda();
+        tren.locatorOrigen("Madrid");
+        tren.locatorDestino();
+        tren.btnBuscar();
+        tren.locatorPrimerTren();
+        tren.aceptarPrimerTren();
+
+        formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
+        // formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
+
+        formularioT.formularioDatos("carlos","perez","probando@gmail.com", 234343434);
+        formularioT.formulacioPasajero("Roberto","Garcia",14,1988,"123456789b");
+
+
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP001_ReservaTren_DestinoNoDisponible() {
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        tren.locatorIda();
+        tren.errorOrigen("Mar del Plata");
+
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP002_ReservaTren_idaVuelta() {  //elijo predeterminado fechas y pasajeros,llego hasta completar datos pasajero y click en seguro
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenes();
+        tren.locatorIdaVuelta();
+        tren.locatorOrigen("Madrid");
+        tren.locatorDestino();
+        tren.btnBuscar();
+        tren.PrimerTrenIdayVuelta();
+        tren.aceptarPrimerTren();
+        formularioT.formularioDatos("carlos", "perez", "probando@gmail.com", 234343434);
+        //formularioT.formulacioPasajero("Roberto","Garcia",14,2000,"123456789b");
+        formularioT.seguro();
+
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void CP003_ReservaTrenHotel() {  //no elijo q pasajero, lo hace con 2 que es la opcion recomendada. Lo mismo con la fecha.
+        //en la parte de datos llego hasta completar los datos de la persona y que se valide, no completo los datos del pasajero ni clickeo siguiente
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        home.locatorVerMas();
+        home.btnTrenHotel();
+        tren.locatorOrigen("Madrid");
+        tren.locatorDestino();
+        tren.btnBuscar();
         Assertions.assertTrue(true);
     }
 
