@@ -33,6 +33,8 @@ public class TestRumbo {
     ConfirmacionPageRumbo confirmacion;
     HotelTren hotelTren;
     HotelPage hotelPage;
+    CodigoTarjetaRegalo codigoTarjetaRegalo;
+    CheckoutTarjeta checkout;
 
     //Actions actions;
     String rutaDriver = "C:\\Users\\bernardo.estrada\\OneDrive - TSOFT\\Escritorio\\BOOTCAMP\\SEMANA 1\\17 DE AGOSTO NIVELACION\\CODIGOS Y EJERCICIOS\\Selenium_Bernardo_Estrada\\src\\test\\resources\\drivers\\chromedriver.exe";
@@ -59,9 +61,10 @@ public class TestRumbo {
         vueloMasHotel = new VueloMasHotelPage(home.getDriver());
         alojamiento = new DestinoPaguete(home.getDriver());
         room = new RoomHotelPage(home.getDriver());
-
         tren = new TrenPage(home.getDriver());
         formularioT = new formularioTren(tren.getDriver());
+        codigoTarjetaRegalo = new CodigoTarjetaRegalo(home.getDriver());
+        checkout = new CheckoutTarjeta(home.getDriver());
 
       //  actions  = new Actions(home.getDriver());
 
@@ -208,7 +211,7 @@ public class TestRumbo {
     }
 
     @Test
-    public void CP0010_TarjetaDeRegalo_Compra_OK(){
+    public void CP0010_TarjetaDeRegalo_Compra_OK()throws InterruptedException{
         home.maximizarBrowser();
         home.aceptarCookies();
         home.locatorVerMas();
@@ -221,9 +224,11 @@ public class TestRumbo {
         particular.Remitente();
         particular.Añadir();
         particular.Continuar();
-
+        checkout.DatosPersonales("Karen","Stark","karen.stark@gmail.com","Las Torres","Punta Arenas","555789","Magallanes","5678943");
+        checkout.seleccionarPais("Chile");
+        checkout.Checkbox();
+        checkout.Comprar();
         Assertions.assertTrue(true);
-
     }
 
     @Test
@@ -302,6 +307,19 @@ public class TestRumbo {
         trenPage.esperarXSegundos(8000);
 
     }
+
+
+
+    @Test
+    public void CP0016_Reserva_hotel_Ingreso_código_tarjeta_de_regalo_NO_OK() throws InterruptedException {
+        home.maximizarBrowser();
+        home.aceptarCookies();
+        hotelPage.completarCamposBusquedaHoteles("Casas Viejas");
+        codigoTarjetaRegalo.Resort();
+        Assertions.assertTrue(true);
+    }
+
+
 
     @Test
     public void CP0017_Busqueda_Hotel_Fecha_no_Ok()  {
